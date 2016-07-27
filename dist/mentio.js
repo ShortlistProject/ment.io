@@ -86,6 +86,7 @@ angular.module('mentio', [])
                     if (!hasTrailingSpace) {
                         $scope.setTriggerText('');
                         angular.element($scope.targetElement).triggerHandler('change');
+                        angular.element($scope.targetElement).triggerHandler('input');
                         if ($scope.isContentEditable()) {
                             $scope.contentEditableMenuPasted = true;
                             var timer = $timeout(function() {
@@ -150,6 +151,7 @@ angular.module('mentio', [])
                                 $scope.targetElementPath, $scope.targetElementSelectedOffset,
                                 $scope.macros, $scope.macros[macro]);
                             angular.element($scope.targetElement).triggerHandler('change');
+                            angular.element($scope.targetElement).triggerHandler('input');
                             $scope.replacingMacro = false;
                         }, 300);
                         $scope.$on('$destroy', function() {
@@ -606,7 +608,7 @@ angular.module('mentio', [])
                 scope.adjustScroll = function (direction) {
                     var menuEl = element[0];
                     var menuItemsList = menuEl.querySelector('ul');
-                    var menuItem = (menuEl.querySelector('[mentio-menu-item].active') || 
+                    var menuItem = (menuEl.querySelector('[mentio-menu-item].active') ||
                         menuEl.querySelector('[data-mentio-menu-item].active'));
 
                     if (scope.isFirstItemActive()) {
